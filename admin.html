@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin & MCQ Editor Portal — JobUdaan</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="admin-body">
+
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="container admin-nav">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="brand-logo">
+          <img src="images/ashoka-emblem.png" alt="Emblem" style="height: 34px;">
+          <div class="brand-text">
+            <span class="brand-name" style="color: #fff;">Job<span style="color: #F58220;">Udaan</span></span>
+            <span class="brand-tagline" style="color: #38BDF8;">Admin &amp; Editor Console</span>
+          </div>
+        </a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span id="admin-role-badge"></span>
+        <span id="admin-user-greeting" style="font-size: 13px; font-weight: 800; color: #fff;"></span>
+        <a href="index.html" class="btn btn-sm btn-outline" style="border-color: #334155; color: #E2E8F0;">
+          વેબસાઇટ જુઓ ↗
+        </a>
+        <button onclick="AuthService.logout()" class="btn btn-sm" style="background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.4);">
+          લૉગઆઉટ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 24px; padding-bottom: 60px;">
+
+    <!-- 1. LOGIN GATE (Shown if not logged in as Admin or Editor) -->
+    <div id="admin-login-gate" style="display: none; max-width: 520px; margin: 40px auto; background: #1E293B; border: 1px solid #334155; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-xl);">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="font-size: 32px; display: block; margin-bottom: 8px;">🔐</span>
+        <h2 style="font-size: 22px; font-weight: 900; color: #ffffff;">Admin &amp; Editor Login</h2>
+        <p style="font-size: 13px; color: #94A3B8;">JobUdaan Recruitment Management &amp; JSON MCQ Studio</p>
+      </div>
+
+      <div id="admin-login-error" style="display: none; background: rgba(239, 68, 68, 0.2); border: 1px solid #EF4444; color: #FCA5A5; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 16px;"></div>
+
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label>ઈમેઇલ (Email Address)</label>
+          <input type="email" id="admin-login-email" required class="form-control" placeholder="dhaval@careersetu.com / admin@careersetu.com">
+        </div>
+
+        <div class="form-group">
+          <label>પાસવર્ડ (Password)</label>
+          <input type="password" id="admin-login-pass" required class="form-control" placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px; background: #2563EB;">
+          લૉગિન કરો (Sign In) →
+        </button>
+      </form>
+
+      <!-- 1-Click Fast Logins -->
+      <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #334155;">
+        <span style="font-size: 11px; font-weight: 800; color: #94A3B8; text-transform: uppercase; display: block; margin-bottom: 10px;">
+          ⚡ 1-Click Instant Access:
+        </span>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+          <button onclick="quickAdminLogin('dhaval@careersetu.com', '123456')" class="btn btn-outline btn-sm" style="background: rgba(245, 130, 32, 0.15); border-color: rgba(245, 130, 32, 0.4); color: #FDBA74;">
+            📝 Dhaval (MCQ Editor)
+          </button>
+          <button onclick="quickAdminLogin('tushar@careersetu.com', '123456')" class="btn btn-outline btn-sm" style="background: rgba(249, 115, 22, 0.15); border-color: rgba(249, 115, 22, 0.4); color: #FDBA74;">
+            📝 Tushar (MCQ Editor)
+          </button>
+          <button onclick="quickAdminLogin('admin@careersetu.com', '123456')" class="btn btn-outline btn-sm" style="grid-column: 1 / -1; background: rgba(124, 58, 237, 0.15); border-color: rgba(124, 58, 237, 0.4); color: #DDD6FE;">
+            🏛️ Super Admin (Full Control)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ADMIN DASHBOARD CONTENT -->
+    <div id="admin-panel-content" style="display: block;">
+      <!-- Stats Row -->
+      <div class="admin-stats-grid">
+        <div class="stat-box">
+          <span class="stat-box-title">કુલ જોબ્સ (Total Jobs)</span>
+          <span id="admin-stat-total-jobs" class="stat-box-val">0</span>
+          <span class="stat-box-subtitle">Live in database</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title">સરકારી ભરતીઓ (Govt)</span>
+          <span id="admin-stat-govt-jobs" class="stat-box-val" style="color: #60A5FA;">0</span>
+          <span class="stat-box-subtitle">UPSC, GPSC, GSSSB</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title">પ્રાઇવેટ ભરતીઓ (Private)</span>
+          <span id="admin-stat-pvt-jobs" class="stat-box-val" style="color: #34D399;">0</span>
+          <span class="stat-box-subtitle">TCS, L&T, Sun Pharma</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title">મોક ટેસ્ટ્સ (Mock Tests)</span>
+          <span id="admin-stat-total-tests" class="stat-box-val" style="color: #FBBF24;">0</span>
+          <span class="stat-box-subtitle">MCQ Test Engine</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="admin-tab-nav">
+        <button id="tab-btn-mcq" class="admin-tab-btn active" onclick="switchTab('mcq')">
+          📤 JSON Mock Test Generator
+        </button>
+        <button id="tab-btn-post-job" class="admin-tab-btn" onclick="switchTab('post-job')">
+          ➕ Post New Job
+        </button>
+        <button id="tab-btn-manage-jobs" class="admin-tab-btn" onclick="switchTab('manage-jobs')">
+          📋 Manage Existing Jobs
+        </button>
+      </div>
+
+      <!-- TAB 1: JSON MCQ UPLOADER (Primary for Dhaval & Tushar) -->
+      <div id="tab-pane-mcq" class="admin-tab-pane" style="display: block;">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h2 style="font-size: 18px; font-weight: 900; color: #ffffff;">
+                📤 JSON Exam &amp; Mock Test Engine
+              </h2>
+              <p style="font-size: 12px; color: #94A3B8; margin-top: 2px;">
+                Dhaval અને Tushar માટે સ્પેશ્યલ ટૂલ: JSON કોડ પેસ્ટ કરીને અથવા JSON ફાઈલ અપલોડ કરીને ઓનલાઇન મોક ટેસ્ટ બનાવો.
+              </p>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <button id="mcq-load-sample-btn" class="btn btn-outline btn-sm" style="border-color: #334155; color: #E2E8F0;">
+                Load Sample JSON
+              </button>
+              <label class="btn btn-outline btn-sm" style="border-color: #334155; color: #E2E8F0; cursor: pointer;">
+                <span>Upload JSON File</span>
+                <input type="file" id="mcq-json-file-input" accept=".json" style="display: none;">
+              </label>
+            </div>
+          </div>
+
+          <div id="mcq-upload-status" style="margin-bottom: 16px;"></div>
+
+          <div class="form-group">
+            <label>JSON Code Input:</label>
+            <textarea id="mcq-json-input" class="json-editor-area" placeholder="Paste your mock test JSON code here..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+            <span style="font-size: 12px; color: #94A3B8;">
+              💡 JSON માં title, questions array, options અને correctAnswer હોવું અનિવાર્ય છે.
+            </span>
+            <button id="mcq-json-submit-btn" class="btn btn-accent btn-lg">
+              Generate &amp; Publish Mock Test 🚀
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: POST NEW JOB -->
+      <div id="tab-pane-post-job" class="admin-tab-pane" style="display: none;">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2 style="font-size: 18px; font-weight: 900; color: #ffffff;">
+              ➕ નવી જોબ જાહેરાત ઉમેરો (Post New Job)
+            </h2>
+          </div>
+
+          <form id="post-job-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>જોબ શીર્ષક (Job Title) *</label>
+                <input type="text" id="new-job-title" required class="form-control" placeholder="e.g. Senior Clerk / Staff Nurse">
+              </div>
+
+              <div class="form-group">
+                <label>સંસ્થા / કંપની (Organization) *</label>
+                <input type="text" id="new-job-org" required class="form-control" placeholder="e.g. GSSSB / TCS / Sun Pharma">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>સેક્ટર (Sector) *</label>
+                <select id="new-job-sector" required class="form-control">
+                  <option value="GOVERNMENT">🏛️ સરકારી (Government)</option>
+                  <option value="PRIVATE">🏢 પ્રાઇવેટ (Private MNC)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>વિભાગ (Department)</label>
+                <input type="text" id="new-job-dept" class="form-control" placeholder="e.g. Health / General Admin / IT">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>કુલ જગ્યાઓ (Vacancies) *</label>
+                <input type="number" id="new-job-vacancies" required class="form-control" placeholder="e.g. 250">
+              </div>
+
+              <div class="form-group">
+                <label>પગાર સ્કેલ (Salary) *</label>
+                <input type="text" id="new-job-salary" required class="form-control" placeholder="e.g. ₹19,950 - ₹63,200">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>જરૂરી લાયકાત (Qualification) *</label>
+                <input type="text" id="new-job-qual" required class="form-control" placeholder="e.g. Any Graduate / B.Pharm / B.Tech">
+              </div>
+
+              <div class="form-group">
+                <label>અરજી કરવાની છેલ્લી તારીખ (Last Date) *</label>
+                <input type="date" id="new-job-lastdate" required class="form-control">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>રાજ્ય (State) *</label>
+                <select id="new-job-state" class="form-control">
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="All India">All India</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>શહેર / જિલ્લો (City/District)</label>
+                <input type="text" id="new-job-city" class="form-control" placeholder="e.g. Gandhinagar / Ahmedabad">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>સત્તાવાર Apply Link *</label>
+              <input type="url" id="new-job-applyurl" required class="form-control" placeholder="https://ojas.gujarat.gov.in">
+            </div>
+
+            <div class="form-group">
+              <label>વિગતવાર વર્ણન (Job Description) *</label>
+              <textarea id="new-job-desc" rows="4" required class="form-control" placeholder="Selection process, age criteria, exam syllabus details..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="background: #2563EB;">
+              જોબ પ્રકાશિત કરો (Publish Job) →
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 3: MANAGE JOBS -->
+      <div id="tab-pane-manage-jobs" class="admin-tab-pane" style="display: none;">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2 style="font-size: 18px; font-weight: 900; color: #ffffff;">
+              📋 વર્તમાન જોબ્સ યાદી (Current Live Jobs)
+            </h2>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Organization</th>
+                  <th>Sector</th>
+                  <th>Last Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-jobs-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      © 2026 JobUdaan Admin &amp; Editor Console.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

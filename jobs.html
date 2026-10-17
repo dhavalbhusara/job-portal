@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs Portal — JobUdaan (Government & Private Vacancies)</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <img src="images/ashoka-emblem.png" alt="Emblem" style="height: 38px;">
+        <div class="brand-text">
+          <span class="brand-name">Job<span>Udaan</span></span>
+          <span class="brand-tagline">National Career Portal</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="jobs.html" class="nav-link active">All Jobs</a></li>
+        <li><a href="mock-tests.html" class="nav-link">Mock Tests (MCQs)</a></li>
+        <li><a href="preparation.html" class="nav-link">Prep Guide</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth-group"></div>
+      <button id="mobile-menu-toggle" class="menu-toggle-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">🏠 Home</a>
+    <a href="jobs.html" class="mobile-nav-link highlight">💼 All Jobs (Govt &amp; Private)</a>
+    <a href="mock-tests.html" class="mobile-nav-link">📝 Online Mock Tests</a>
+    <a href="preparation.html" class="mobile-nav-link">📚 Exam Prep Guide</a>
+    <a href="admin.html" class="mobile-nav-link">🏛️ Admin Portal</a>
+    <a href="about.html" class="mobile-nav-link">ℹ️ About Us</a>
+    <a href="contact.html" class="mobile-nav-link">📞 Contact</a>
+  </div>
+
+  <main class="container" style="padding-top: 32px; padding-bottom: 48px;">
+    <!-- Page Header & Filter Controls -->
+    <div style="margin-bottom: 24px;">
+      <h1 style="font-size: 28px; font-weight: 900; color: #0F172A; margin-bottom: 6px;">
+        ભરતી પોર્ટલ (Job Vacancies Explorer)
+      </h1>
+      <p style="font-size: 14px; color: #64748B;">
+        સરકારી અને ખાનગી ક્ષેત્રની ચકાસાયેલી ૧,૨૦,૦૦૦+ ભરતીઓમાંથી તમારી લાયકાત મુજબ જોબ શોધો.
+      </p>
+    </div>
+
+    <!-- Filters Bar Card -->
+    <div class="card" style="margin-bottom: 32px; padding: 16px;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 12px; align-items: center;">
+        <div>
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748B; display: block; margin-bottom: 4px;">
+            કીવર્ડ અથવા હોદ્દો (Keywords)
+          </label>
+          <input type="text" id="job-search-input" class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1; width: 100%;" placeholder="e.g. Clerk, Police, Pharmacist, TCS, L&T, B.Tech">
+        </div>
+
+        <div>
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748B; display: block; margin-bottom: 4px;">
+            સેક્ટર (Job Sector)
+          </label>
+          <select id="sector-filter" class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1; width: 100%;">
+            <option value="ALL">All Sectors</option>
+            <option value="GOVERNMENT">🏛️ સરકારી (Govt)</option>
+            <option value="PRIVATE">🏢 પ્રાઇવેટ (Private MNC)</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748B; display: block; margin-bottom: 4px;">
+            રાજ્ય / સ્થળ (State)
+          </label>
+          <select id="state-filter" class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1; width: 100%;">
+            <option value="ALL">All Locations</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="All India">All India</option>
+          </select>
+        </div>
+
+        <div style="align-self: flex-end;">
+          <button onclick="resetFilters()" class="btn btn-outline" style="padding: 10px 16px;">
+            Reset ↺
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <span id="total-jobs-count" style="font-size: 14px; font-weight: 800; color: #0F172A;">
+        Loading jobs...
+      </span>
+      <span style="font-size: 12px; color: #059669; font-weight: 700;">
+        ✔ 100% Free Application Direct Links
+      </span>
+    </div>
+
+    <!-- Jobs Grid Container -->
+    <div id="jobs-list" class="grid-2"></div>
+  </main>
+
+  <!-- Job Detail Modal -->
+  <div id="job-detail-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="job-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Tab Bar -->
+  <nav class="mobile-bottom-bar">
+    <a href="index.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="jobs.html" class="mobile-bottom-item active">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+      <span>Jobs</span>
+    </a>
+    <a href="mock-tests.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      <span>MCQs</span>
+    </a>
+    <a href="preparation.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+      <span>Guide</span>
+    </a>
+    <a href="admin.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      © 2026 JobUdaan. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

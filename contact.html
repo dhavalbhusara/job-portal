@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — JobUdaan</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <img src="images/ashoka-emblem.png" alt="Emblem" style="height: 38px;">
+        <div class="brand-text">
+          <span class="brand-name">Job<span>Udaan</span></span>
+          <span class="brand-tagline">Contact &amp; Support</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="jobs.html">All Jobs</a></li>
+        <li><a href="mock-tests.html" class="nav-link">Mock Tests (MCQs)</a></li>
+        <li><a href="preparation.html" class="nav-link">Prep Guide</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth-group"></div>
+      <button id="mobile-menu-toggle" class="menu-toggle-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">🏠 Home</a>
+    <a href="jobs.html" class="mobile-nav-link">💼 All Jobs</a>
+    <a href="mock-tests.html" class="mobile-nav-link">📝 Online Mock Tests</a>
+    <a href="preparation.html" class="mobile-nav-link">📚 Exam Prep Guide</a>
+    <a href="admin.html" class="mobile-nav-link">🏛️ Admin Portal</a>
+    <a href="about.html" class="mobile-nav-link">ℹ️ About Us</a>
+    <a href="contact.html" class="mobile-nav-link highlight">📞 Contact</a>
+  </div>
+
+  <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
+    <div style="max-width: 680px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <span style="background: #ECFDF5; color: #065F46; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase;">
+          Get in Touch
+        </span>
+        <h1 style="font-size: 28px; font-weight: 900; color: #0F172A; margin: 10px 0 6px 0;">
+          સંપર્ક કરો (Contact JobUdaan)
+        </h1>
+        <p style="font-size: 14px; color: #64748B;">
+          ભરતી વિશે કોઈ પ્રશ્ન હોય અથવા ફીડબેક આપવા માંગતા હોવ તો નીચેના ફોર્મ દ્વારા અમારો સંપર્ક કરી શકો છો.
+        </p>
+      </div>
+
+      <div class="card" style="padding: 28px;">
+        <div id="contact-success" style="display: none; background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 13px; margin-bottom: 16px;">
+          🎉 તમારો સંદેશો મળી ગયો છે! અમારી ટીમ ટૂંક સમયમાં સંપર્ક કરશે.
+        </div>
+
+        <form id="contact-form" onsubmit="handleContactSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>તમારું નામ (Full Name) *</label>
+              <input type="text" id="contact-name" required class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;" placeholder="e.g. Bhavesh Patel">
+            </div>
+
+            <div class="form-group">
+              <label>ઈમેઇલ (Email Address) *</label>
+              <input type="email" id="contact-email" required class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;" placeholder="bhavesh@example.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>મોબાઈલ નંબર (Mobile Number)</label>
+            <input type="tel" id="contact-mobile" class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;" placeholder="9876543210">
+          </div>
+
+          <div class="form-group">
+            <label>વિષય (Subject) *</label>
+            <input type="text" id="contact-subject" required class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;" placeholder="ભરતી વિશે પ્રશ્ન / મોક ટેસ્ટ ફીડબેક">
+          </div>
+
+          <div class="form-group">
+            <label>સંદેશો (Message) *</label>
+            <textarea id="contact-message" rows="4" required class="form-control" style="background: #F8FAFC; color: #0F172A; border-color: #CBD5E1;" placeholder="તમારો સંદેશો અહીં લખો..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            સંદેશો મોકલો (Send Message) →
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      © 2026 JobUdaan. Contact Support.
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById("contact-form").reset();
+      const succ = document.getElementById("contact-success");
+      succ.style.display = "block";
+      showToast("સંદેશો સફળતાપૂર્વક મોકલાઈ ગયો છે!");
+    }
+  </script>
+</body>
+</html>

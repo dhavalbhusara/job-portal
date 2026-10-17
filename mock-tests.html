@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Mock Tests (MCQs) — JobUdaan</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <img src="images/ashoka-emblem.png" alt="Emblem" style="height: 38px;">
+        <div class="brand-text">
+          <span class="brand-name">Job<span>Udaan</span></span>
+          <span class="brand-tagline">Online Mock Test Engine</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="jobs.html">All Jobs</a></li>
+        <li><a href="mock-tests.html" class="nav-link active">Mock Tests (MCQs)</a></li>
+        <li><a href="preparation.html" class="nav-link">Prep Guide</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div id="nav-auth-container" class="nav-auth-group"></div>
+      <button id="mobile-menu-toggle" class="menu-toggle-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">🏠 Home</a>
+    <a href="jobs.html" class="mobile-nav-link">💼 All Jobs</a>
+    <a href="mock-tests.html" class="mobile-nav-link highlight">📝 Online Mock Tests</a>
+    <a href="preparation.html" class="mobile-nav-link">📚 Exam Prep Guide</a>
+    <a href="admin.html" class="mobile-nav-link">🏛️ Admin Portal</a>
+    <a href="about.html" class="mobile-nav-link">ℹ️ About Us</a>
+    <a href="contact.html" class="mobile-nav-link">📞 Contact</a>
+  </div>
+
+  <main class="container" style="padding-top: 32px; padding-bottom: 60px;">
+
+    <!-- 1. TESTS LIST SECTION -->
+    <section id="tests-list-section">
+      <div style="margin-bottom: 28px;">
+        <span style="background: #DBEAFE; color: #1D4ED8; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase;">
+          ⚡ Computer-Based Test (CBT) Simulator
+        </span>
+        <h1 style="font-size: 28px; font-weight: 900; color: #0F172A; margin: 10px 0 6px 0;">
+          ઓનલાઇન મોક ટેસ્ટ્સ અને પ્રેક્ટિસ પેપર્સ (Online Mock Tests)
+        </h1>
+        <p style="font-size: 14px; color: #64748B;">
+          GSSSB CCE, Police Constable, PSI, Talati અને GPSC પરીક્ષા માટે ટાઈમર અને ઓટોમેટિક સ્કોરિંગ સાથે લાઈવ મોક ટેસ્ટ.
+        </p>
+      </div>
+
+      <div id="mock-tests-grid" class="grid-3"></div>
+    </section>
+
+    <!-- 2. LIVE TEST RUNNER SCREEN (CBT) -->
+    <section id="test-runner-screen" style="display: none;">
+      <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E8F0; padding-bottom: 14px; margin-bottom: 20px;">
+          <div>
+            <h2 id="active-test-title" style="font-size: 18px; font-weight: 900; color: #0F172A;"></h2>
+            <span id="current-q-subject" style="font-size: 12px; font-weight: 700; color: #64748B;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="text-align: right;">
+              <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #64748B; display: block;">બાકી રહેલ સમય (Time Left)</span>
+              <span id="test-countdown-timer" style="font-size: 22px; font-weight: 900; font-family: monospace;"></span>
+            </div>
+
+            <button onclick="exitTest()" class="btn btn-sm btn-outline" style="border-color: #EF4444; color: #EF4444;">
+              બહાર નીકળો (Exit)
+            </button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 24px;">
+          <!-- Left: Question Area -->
+          <div>
+            <span id="current-q-num" style="font-size: 12px; font-weight: 800; color: #2563EB; display: block; margin-bottom: 8px;"></span>
+            <h3 id="current-q-text" style="font-size: 17px; font-weight: 800; color: #0F172A; line-height: 1.5; margin-bottom: 20px;"></h3>
+
+            <div id="current-q-options"></div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid #E2E8F0;">
+              <button id="btn-prev-q" onclick="prevQuestion()" class="btn btn-outline">
+                ← પાછળ (Previous)
+              </button>
+              <div style="display: flex; gap: 10px;">
+                <button id="btn-next-q" onclick="nextQuestion()" class="btn btn-primary">
+                  આગળ (Next) →
+                </button>
+                <button onclick="submitTest()" class="btn btn-accent">
+                  ટેસ્ટ સબમિટ કરો (Submit Test)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Question Palette -->
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px;">
+            <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #475569; margin-bottom: 12px;">
+              પ્રશ્ન પેલેટ (Question Palette)
+            </h4>
+            <div id="question-palette-grid" style="display: flex; flex-wrap: gap; gap: 6px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TEST RESULT SCREEN -->
+    <section id="test-result-screen" style="display: none;">
+      <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-md); margin-bottom: 32px; text-align: center;">
+        <span style="font-size: 44px; display: block; margin-bottom: 10px;">🏆</span>
+        <h2 style="font-size: 26px; font-weight: 900; color: #0F172A; margin-bottom: 6px;">
+          ટેસ્ટ સ્કોરકાર્ડ (Test Result &amp; Analysis)
+        </h2>
+        <p style="font-size: 14px; color: #64748B; margin-bottom: 24px;">તમારું વિગતવાર પરિણામ અને ઉત્તર વિશ્લેષણ</p>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 800px; margin: 0 auto 28px auto;">
+          <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 16px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #1E40AF;">કુલ ગુણ (Final Marks)</span>
+            <div id="result-final-score" style="font-size: 28px; font-weight: 900; color: #1D4ED8; margin-top: 4px;">0</div>
+          </div>
+          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 12px; padding: 16px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #065F46;">સાચા જવાબ (Correct)</span>
+            <div id="result-correct-count" style="font-size: 28px; font-weight: 900; color: #059669; margin-top: 4px;">0</div>
+          </div>
+          <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; padding: 16px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #991B1B;">ખોટા જવાબ (Wrong)</span>
+            <div id="result-wrong-count" style="font-size: 28px; font-weight: 900; color: #DC2626; margin-top: 4px;">0</div>
+          </div>
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #475569;">ચોકસાઈ (Accuracy)</span>
+            <div id="result-accuracy" style="font-size: 28px; font-weight: 900; color: #0F172A; margin-top: 4px;">0%</div>
+          </div>
+        </div>
+
+        <button onclick="location.reload()" class="btn btn-primary btn-lg">
+          બીજી ટેસ્ટ આપો (Take Another Test) ↺
+        </button>
+      </div>
+
+      <!-- Question Review with Explanations -->
+      <div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #0F172A; margin-bottom: 16px;">
+          પ્રશ્નવાર વિશ્લેષણ અને સમજૂતી (Detailed Solutions)
+        </h3>
+        <div id="test-questions-review-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Tab Bar -->
+  <nav class="mobile-bottom-bar">
+    <a href="index.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="jobs.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+      <span>Jobs</span>
+    </a>
+    <a href="mock-tests.html" class="mobile-bottom-item active">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      <span>MCQs</span>
+    </a>
+    <a href="preparation.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+      <span>Guide</span>
+    </a>
+    <a href="admin.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      © 2026 JobUdaan. Online Mock Test Engine.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/mock-test.js"></script>
+</body>
+</html>

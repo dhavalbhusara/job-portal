@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobUdaan — National Govt & Corporate Career Hub 2026</title>
+  <meta name="description" content="JobUdaan: 100% verified Government (UPSC, GPSC, GSSSB, Police, Railways) and Private MNC jobs with free online mock tests and preparation guides.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <img src="images/ashoka-emblem.png" alt="National Emblem" style="height: 38px;">
+        <div class="brand-text">
+          <span class="brand-name">Job<span>Udaan</span></span>
+          <span class="brand-tagline">National Govt &amp; Corporate Career Hub</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="jobs.html?sector=GOVERNMENT" class="nav-link">Govt Jobs</a></li>
+        <li><a href="jobs.html?sector=PRIVATE" class="nav-link">Private MNCs</a></li>
+        <li>
+          <a href="mock-tests.html" class="nav-link">
+            Mock Tests (MCQs)
+            <span class="nav-badge live">Live</span>
+          </a>
+        </li>
+        <li><a href="preparation.html" class="nav-link">Prep Guide</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- User Auth State Container -->
+      <div id="nav-auth-container" class="nav-auth-group"></div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button id="mobile-menu-toggle" class="menu-toggle-btn" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-nav-drawer">
+    <a href="index.html" class="mobile-nav-link">🏠 Home</a>
+    <a href="jobs.html?sector=GOVERNMENT" class="mobile-nav-link">🏛️ Government Jobs (Sarkari)</a>
+    <a href="jobs.html?sector=PRIVATE" class="mobile-nav-link">🏢 Private &amp; MNCs</a>
+    <a href="mock-tests.html" class="mobile-nav-link highlight">📝 Online Mock Tests (MCQs)</a>
+    <a href="preparation.html" class="mobile-nav-link">📚 Exam Preparation Guide</a>
+    <a href="admin.html" class="mobile-nav-link">🏛️ Admin &amp; MCQ Editor Portal</a>
+    <a href="about.html" class="mobile-nav-link">ℹ️ About JobUdaan</a>
+    <a href="contact.html" class="mobile-nav-link">📞 Contact Support</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glow"></div>
+      <div class="container hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span>
+          <span>Official 2026 Career &amp; Recruitment Gateway</span>
+        </div>
+
+        <h1 class="hero-title">
+          તમારી કારકિર્દીને આપો નવી ઉડાન <br>
+          <span>JobUdaan સાથે</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          UPSC, GPSC, GSSSB, Police, Railways અને Banking સાથે ભારતની ટોપ MNCs (TCS, Infosys, Sun Pharma, L&amp;T) ના 100% વેરિફાઇડ નોટિફિકેશન અને ફ્રી મોક ટેસ્ટ.
+        </p>
+
+        <!-- Search Bar -->
+        <form id="hero-search-form" class="hero-search-box">
+          <div class="search-input-group">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="hero-search-text" class="search-input" placeholder="હોદ્દો અથવા ડિગ્રી લખો (e.g. Senior Clerk, Pharmacist, GPSC, TCS)">
+          </div>
+
+          <select id="hero-search-sector" class="search-select">
+            <option value="ALL">All Sectors</option>
+            <option value="GOVERNMENT">🏛️ સરકારી (Govt)</option>
+            <option value="PRIVATE">🏢 પ્રાઇવેટ (MNC)</option>
+          </select>
+
+          <button type="submit" class="btn btn-accent btn-lg">
+            શોધો (Search) 🔍
+          </button>
+        </form>
+
+        <!-- Stats Bar -->
+        <div class="quick-stats-bar">
+          <div class="stat-item">🎯 <strong>1,20,000+</strong> વેરિફાઇડ જગ્યાઓ</div>
+          <div class="stat-item">📝 <strong>50+</strong> ફ્રી મોક ટેસ્ટ્સ</div>
+          <div class="stat-item">⚡ <strong>100%</strong> ડાયરેક્ટ સત્તાવાર લિંક્સ</div>
+          <div class="stat-item">🛡️ <strong>No Fake Ads</strong> ગેરંટી</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container" style="margin-top: 40px;">
+      <!-- Daily GK Question Box -->
+      <section class="gk-banner" id="daily-gk-widget">
+        <div class="gk-header">
+          <span class="gk-tag">🔥 આજનો જીકે પ્રશ્ન (Today's GK Highlight)</span>
+          <span style="font-size: 12px; font-weight: 700; color: #E2E8F0;">Daily 2026 Preparation</span>
+        </div>
+        <h3 id="gk-q-text" class="gk-question">પ્રશ્ન લોડ થઈ રહ્યો છે...</h3>
+        <div id="gk-options-container" class="gk-options"></div>
+        <div id="gk-explanation" class="gk-answer-explanation"></div>
+      </section>
+
+      <!-- Featured Jobs Grid -->
+      <section style="margin-bottom: 48px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">તાજા નોટિફિકેશન્સ (Latest Verified Jobs)</h2>
+            <p class="section-desc">સરકારી અને પ્રાઇવેટ ક્ષેત્રની હાલમાં ચાલુ ભરતીઓ</p>
+          </div>
+          <a href="jobs.html" class="btn btn-outline">
+            તમામ જોબ્સ જુઓ →
+          </a>
+        </div>
+
+        <div id="home-featured-jobs" class="grid-2"></div>
+      </section>
+
+      <!-- Popular Mock Tests Section -->
+      <section style="margin-bottom: 48px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">ઓનલાઈન મોક ટેસ્ટ્સ (Online Mock Tests)</h2>
+            <p class="section-desc">ટાઈમર અને ઓટોમેટિક સ્કોરિંગ સાથે પ્રેક્ટિસ પેપર્સ</p>
+          </div>
+          <a href="mock-tests.html" class="btn btn-outline">
+            તમામ ટેસ્ટ્સ જુઓ →
+          </a>
+        </div>
+
+        <div id="home-mock-tests" class="grid-3"></div>
+      </section>
+
+      <!-- Preparation Blueprint Banner -->
+      <section style="background: linear-gradient(135deg, #0F2942 0%, #1E3A8A 100%); color: #fff; border-radius: 20px; padding: 36px; display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px;">
+        <span style="background: rgba(245, 130, 32, 0.2); border: 1px solid rgba(245, 130, 32, 0.5); color: #FDBA74; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 800; width: fit-content;">
+          📚 પરીક્ષા તૈયારી ગાઈડ 2026
+        </span>
+        <h2 style="font-size: 26px; font-weight: 900; line-height: 1.2;">
+          GSSSB, Police Constable, Talati અને GPSC પાસ કરવાની સાચી રણનીતિ
+        </h2>
+        <p style="font-size: 14px; color: #CBD5E1; max-width: 720px; line-height: 1.6;">
+          વિષય મુજબ ગુણભાર, દરરોજનું ટાઈમટેબલ, અગાઉના વર્ષોના પ્રશ્નપત્રો અને ટોપર્સની ગોલ્ડન ટિપ્સ સાથે સંપૂર્ણ તૈયારી ગાઈડ.
+        </p>
+        <div>
+          <a href="preparation.html" class="btn btn-accent btn-lg">
+            સંપૂર્ણ ગાઈડ વાંચો (Read Blueprint) →
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Mobile Bottom Tab Bar -->
+  <nav class="mobile-bottom-bar">
+    <a href="index.html" class="mobile-bottom-item active">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="jobs.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+      <span>Jobs</span>
+    </a>
+    <a href="mock-tests.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      <span>MCQs</span>
+    </a>
+    <a href="preparation.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+      <span>Guide</span>
+    </a>
+    <a href="admin.html" class="mobile-bottom-item">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 12px;">
+            <img src="images/ashoka-emblem.png" alt="Emblem" style="height: 34px;">
+            <span class="brand-name" style="color: #fff;">Job<span style="color: #F58220;">Udaan</span></span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.6; color: #94A3B8;">
+            JobUdaan ભારત અને ગુજરાતના યુવાનો માટે સરકારી અને પ્રાઇવેટ કારકિર્દી નિર્માણ માટેનું વિશ્વસનીય પોર્ટલ છે. અહીં તમને મળશે ૧૦૦% સાચી ભરતી માહિતી અને ગુણવત્તાયુક્ત મોક ટેસ્ટ્સ.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>ઝડપી લિંક્સ</h4>
+          <ul>
+            <li><a href="jobs.html?sector=GOVERNMENT">સરકારી નોકરીઓ (Govt Jobs)</a></li>
+            <li><a href="jobs.html?sector=PRIVATE">પ્રાઇવેટ અને MNCs ભરતી</a></li>
+            <li><a href="mock-tests.html">ઓનલાઇન મોક ટેસ્ટ (MCQs)</a></li>
+            <li><a href="preparation.html">પરીક્ષા તૈયારી બ્લુપ્રિન્ટ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>વિશેષ પરીક્ષાઓ</h4>
+          <ul>
+            <li><a href="preparation.html#gsssb">GSSSB CCE Clerk 2026</a></li>
+            <li><a href="preparation.html#police">ગુજરાત પોલીસ કોન્સ્ટેબલ / PSI</a></li>
+            <li><a href="preparation.html#talati">તલાટી મંત્રી અને પંચાયત ક્લાર્ક</a></li>
+            <li><a href="preparation.html#gpsc">GPSC વર્ગ ૧-૨ અધિકારી</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>સહાય અને એડમિન</h4>
+          <ul>
+            <li><a href="admin.html">એડમિન કંટ્રોલ સેન્ટર</a></li>
+            <li><a href="admin.html?tab=mcq">JSON MCQ અપલોડ ટૂલ</a></li>
+            <li><a href="about.html">અમારા વિશે (About Us)</a></li>
+            <li><a href="contact.html">સંપર્ક કરો (Contact Us)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 JobUdaan. All Rights Reserved. Built for Students &amp; Job Seekers.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    // Home Page specific renderer
+    document.addEventListener("DOMContentLoaded", () => {
+      const jobs = DataStore.getJobs();
+      const tests = DataStore.getMockTests();
+
+      // Render top 4 jobs on home
+      const featContainer = document.getElementById("home-featured-jobs");
+      if (featContainer) {
+        featContainer.innerHTML = jobs.slice(0, 4).map(job => `
+          <div class="card job-card">
+            <div>
+              <div class="job-card-top">
+                <span class="sector-badge ${job.sector === 'GOVERNMENT' ? 'govt' : 'pvt'}">
+                  ${job.sector === 'GOVERNMENT' ? '🏛️ Sarkari Govt' : '🏢 Private MNC'}
+                </span>
+                <span style="font-size: 11px; font-weight: 700; color: #dc2626;">
+                  Last Date: ${job.lastDate}
+                </span>
+              </div>
+              <h3 class="job-title">${job.title}</h3>
+              <div class="job-company">🏢 ${job.organization}</div>
+              <div class="job-meta-grid">
+                <div>
+                  <span class="meta-label">પગાર</span>
+                  <span class="meta-val">${job.salary}</span>
+                </div>
+                <div>
+                  <span class="meta-label">જગ્યા</span>
+                  <span class="meta-val">${job.vacancies} Posts</span>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                  <span class="meta-label">લાયકાત</span>
+                  <span class="meta-val">${job.qualification}</span>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-actions">
+              <a href="jobs.html?q=${encodeURIComponent(job.title.split(' ')[0])}" class="btn btn-outline" style="flex: 1;">
+                વિગત જુઓ
+              </a>
+              <a href="${job.applyUrl}" target="_blank" class="btn btn-primary" style="flex: 1;">
+                Apply ↗
+              </a>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      // Render top mock tests on home
+      const testContainer = document.getElementById("home-mock-tests");
+      if (testContainer) {
+        testContainer.innerHTML = tests.slice(0, 3).map(test => `
+          <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-size: 10px; font-weight: 800; background: #DBEAFE; color: #1D4ED8; padding: 2px 6px; border-radius: 4px;">
+                ${test.categoryName || test.category}
+              </span>
+              <h4 style="font-size: 15px; font-weight: 800; margin: 10px 0 6px 0; color: #0F172A;">
+                ${test.title}
+              </h4>
+              <p style="font-size: 12px; color: #64748B; margin-bottom: 12px;">
+                ${test.questions ? test.questions.length : 25} પ્રશ્નો • ${test.durationMinutes || 30} મિનિટ • નેગેટિવ માર્કિંગ સાથે.
+              </p>
+            </div>
+            <a href="mock-tests.html" class="btn btn-primary" style="width: 100%;">
+              ટેસ્ટ આપો (Start) →
+            </a>
+          </div>
+        `).join("");
+      }
+    });
+  </script>
+</body>
+</html>

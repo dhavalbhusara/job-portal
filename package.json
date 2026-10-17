@@ -1,0 +1,20 @@
+{
+  "name": "jobudaan",
+  "version": "1.0.0",
+  "description": "JobUdaan - National Government & Corporate Career Hub with Online Mock Tests and JSON MCQ Uploader",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -l 3000 ."
+  },
+  "keywords": [
+    "jobudaan",
+    "government-jobs",
+    "private-jobs",
+    "mock-tests",
+    "mcqs",
+    "gujarat-jobs",
+    "career-portal"
+  ],
+  "author": "JobUdaan Team",
+  "license": "MIT"
+}
